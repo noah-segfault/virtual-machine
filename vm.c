@@ -11,12 +11,30 @@ typedef struct instruction
 } instruction;
 
 
-int main (void)
+int main (int argc, char *argv[])
 {
-    int gp, ic, dp, free, pc, sp;
+    FILE *fp;
 
-    int pas [MAX_PAS_LENGTH] = {0};
+    // Starting variables
+    int gp, ic, dp, free, pc, sp, bp;
+
+    gp = ic;    //Global Pointer – Points to DATA segment
+    dp = ic -1;  //Data Pointer – To access variables in Main
+    free = ic + 40;  // FREE points to Heap
+    bp = ic; // Points to base of DATA or activation records
+    pc = 0; // Stack pointer – Points to top of stack  
+    sp = MAX_PAS_LENGTH;  
+  
+    // Initialize all the values to the process address space to zero
+    int pas [MAX_PAS_LENGTH + 1] = {0};
     
+    FILE *fp = NULL;
+    fp = fopen(argv[1], "r");
+   
+    if (fp == NULL)
+    {
+        return EXIT_FAILURE;
+    }
     
     
     return 0;
@@ -28,8 +46,11 @@ int main (void)
 /**********************************************/
 int base(int L)
 {
-    int arb = BP;      // arb = activation record base
+    int arb = bp;      // arb = activation record base
     while ( L > 0)     // find base L levels down
-    {arb = pas[arb];
-    L--;}return arb;
+    {
+        arb = pas[arb];
+        L--;
+    }
+    return arb;
 }
