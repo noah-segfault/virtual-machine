@@ -13,7 +13,13 @@ typedef struct instruction
 
 int main (void)
 {
+    int gp, ic, dp, free, pc, sp;
+
+    int pas [MAX_PAS_LENGTH] = {0};
     
+    
+    
+    return 0;
 }
 
 /**********************************************/
