@@ -36,7 +36,10 @@ int main (int argc, char *argv[])
         return EXIT_FAILURE;
     }
     
-    
+    for (int i = 0; i < MAX_PAS_LENGTH; i++)
+    {
+        fscanf(fp, %d, &pas[i]);
+    }
     return 0;
 }
 
